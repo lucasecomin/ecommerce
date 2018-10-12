@@ -2,20 +2,21 @@
 
 require_once("vendor/autoload.php");
 
-$app = new \Slim\Slim();
+use \Slim\Slim;
+use \Hcode\Page;
+
+$app = new Slim();
 
 $app->config('debug', true);
 
-$app->get('/', function() {
+$app->get('/', function() { #chamad o caminho da raiz
     
-	$sql = new Hcode\DB\Sql();
+	$page = new Page(); # cria uma nova pagina
 
-	$results = $sql->select("SELECT * FROM tb_users");
-
-	echo json_encode($results);
+	$page->setTpl("index"); #carrega conteudo
 
 });
 
-$app->run();
+$app->run(); #tudo carregado? vamos rodar o codigo.
 
  ?>
